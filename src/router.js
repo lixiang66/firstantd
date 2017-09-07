@@ -1,7 +1,9 @@
 import React from 'react';
 import {
 	Router,
-	Route
+	Route,
+	IndexRoute,
+	DefaultRoute
 } from 'dva/router';
 import IndexPage from './routes/IndexPage';
 import Products from './routes/Products';
@@ -9,7 +11,7 @@ import Example from './routes/Example';
 import LoginPage from './routes/LoginPage';
 
 import MainLayout from './components/MainLayout';
-
+import MapComponent from './components/MapComponent';
 import Users from "./routes/Users.js";
 
 function RouterConfig({
@@ -18,10 +20,13 @@ function RouterConfig({
 	return (
 		<Router history={history}>
       <Route path="/" component={MainLayout} >
-		
+      	<IndexRoute component={Products}/>
+      	<Route path="/example" component={Example} />
+      	<Route path="/products" component={Products} />
+		<Route path="/map" component={MapComponent} />
       </Route>
-      <Route path="/products" component={Products} />
-		<Route path="/example" component={Example} />
+      
+		
       <Route path="/users" component={Users} />
     </Router>
 	);

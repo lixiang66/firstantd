@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'dva';
+import {Link} from 'react-router';
 import { Layout, Menu, Breadcrumb, Icon, Button, Avatar } from 'antd';
 import styles from './MainLayout.less';
 const { SubMenu } = Menu;
@@ -47,7 +49,11 @@ class MainLayout extends React.Component {
 		return (
 	<Layout style={{height:`100%`}}>
 		<Sider style={{ background: '#fff' }} trigger={null} collapsible breakpoint="md" onCollapse={(collapsed, type) => { this.toggleCollapsed(); }} collapsed={this.state.collapsed}>
-		<div  className={styles.logo}><Avatar style={{ backgroundColor: '#87d068' }}  size={this.state.collapsed?"":"large"} icon="user" /></div>
+		<div  className={styles.logo}>
+			<Link to="/">
+		    	<Avatar style={{ backgroundColor: '#87d068' }}  size={this.state.collapsed?"":"large"} icon="user" />
+			</Link>
+		</div>
 			
 			<Menu
 			openKeys={this.state.openKeys}
@@ -56,8 +62,12 @@ class MainLayout extends React.Component {
 			onOpenChange={this.onOpenChange}
         	onClick={this.handleClick}
 			style={{ height: '100%', borderRight: 0 }} >
-				<SubMenu key="sub1" title={<span><Icon type="user" /><span>subnav 1</span></span>}>
-					<Menu.Item key="1">option1</Menu.Item>
+				<SubMenu key="sub1" title={<span><Icon type="user" /><span>图表学习</span></span>}>
+					<Menu.Item key="1">
+						<Link to="/map">
+					    中国地图
+						</Link>
+					</Menu.Item>
 					<Menu.Item key="2">option2</Menu.Item>
 					<Menu.Item key="3">option3</Menu.Item>
 					<Menu.Item key="4">option4</Menu.Item>
@@ -91,8 +101,8 @@ class MainLayout extends React.Component {
               onClick={this.toggleCollapsed}
             />
 			</Header>
-			<Content style={{ background: '#fff', padding: 24, margin: 5, minHeight: 600 }}>
-			Content
+			<Content style={{ background: '#fff', padding: 24, margin: 5, height: `auto` }}>
+			{this.props.children}
 			</Content>
 			<Footer style={{ textAlign: 'center' }}>
 			Ant Design ©2016 Created by Ant UED
