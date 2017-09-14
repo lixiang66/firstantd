@@ -5,13 +5,16 @@ import JPlayer, { connect, Gui, SeekBar, BufferBar,
   VolumeBar, Duration, CurrentTime, Download, BrowserUnsupported,
  } from 'react-jplayer';
 
-const AudioPlayer = () => (
-  <JPlayer className="jp-sleek">
+ import {Icon} from 'antd';
+
+const AudioPlayer = ({jPlayers}) => (
+  <div >
+  	<JPlayer className="jp-sleek">
     <Audio />
-    <Gui>
+    <Gui style={{position:`relative`}}>
       <div className="jp-controls jp-icon-controls">
-        <Play><i className="fa">{/* Icon set in css*/}</i></Play>
-        <Repeat><i className="fa fa-repeat" /></Repeat>
+        <Play>{jPlayers.AudioPlayer.paused?<Icon type="play-circle-o" />:<Icon type="pause-circle-o" />}</Play>
+        <Repeat>{jPlayers.AudioPlayer.loop?<Icon type="retweet" />:<Icon type="link" />}</Repeat>
         <div className="jp-progress">
           <SeekBar>
             <BufferBar />
@@ -22,7 +25,7 @@ const AudioPlayer = () => (
         </div>
         <div className="jp-volume-container">
           <Mute>
-            <i className="fa">{/* Icon set in css*/}</i>
+            <Icon type="notification" />
           </Mute>
           <div className="jp-volume-slider">
             <div className="jp-volume-bar-container">
@@ -30,8 +33,8 @@ const AudioPlayer = () => (
             </div>
           </div>
         </div>
-        <FullScreen><i className="fa fa-expand" /></FullScreen>
-        <Download><i className="fa fa-download" /></Download>
+        <FullScreen><Icon type="arrows-alt" /></FullScreen>
+        <Download><Icon type="download" /></Download>
         <div className="jp-title-container">
           <Poster />
           <Title />
@@ -40,6 +43,7 @@ const AudioPlayer = () => (
       <BrowserUnsupported />
     </Gui>
   </JPlayer>
+  </div>
 );
 
 const options = {
@@ -47,13 +51,13 @@ const options = {
   keyEnabled: true,
   verticalVolume: true,
   media: {
-    artist: 'peach.blender',
-    title: 'Big Buck Bunny Trailer',
+    title: 'Bubble',
+    artist: 'Miaow',
     sources: {
-       mp3: 'http://www.jplayer.org/audio/mp3/Miaow-01-Tempered-song.mp3',
+      m4a: 'http://jplayer.org/audio/m4a/Miaow-07-Bubble.m4a',
+      oga: 'http://jplayer.org/audio/ogg/Miaow-07-Bubble.ogg',
     },
-    poster: 'http://www.jplayer.org/video/poster/Big_Buck_Bunny_Trailer_480x270.png',
+    free: true,
   },
 };
-
 export default connect(AudioPlayer, options);

@@ -13,6 +13,7 @@ import LoginPage from './routes/LoginPage';
 import MainLayout from './components/MainLayout';
 import MapComponent from './components/MapComponent';
 import AudioPlayer from './components/AudioPlayer';
+import AudioPlaylist from './components/AudioPlaylist';
 import Users from "./routes/Users.js";
 
 function RouterConfig({
@@ -24,6 +25,7 @@ function RouterConfig({
       	<IndexRoute component={Products}/>
       	<Route path="/example" component={Example} />
       	<Route path="/player" component={AudioPlayer} />
+      	<Route path="/playerlist" component={AudioPlaylist} />
       	<Route path="/products" component={Products} />
 		<Route path="/map" component={MapComponent} />
       </Route>

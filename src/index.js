@@ -1,10 +1,15 @@
 import dva from 'dva';
-import './index.css';
-import 'react-jplayer/src/less/skins/sleek.less';
-// Styles Play/Pause/Mute etc when icons (<i />) are used for them
-import 'react-jplayer/src/less/controls/iconControls.less';
+// import './index.css';
+// import 'react-jplayer/src/less/skins/sleek.less';
+// // Styles Play/Pause/Mute etc when icons (<i />) are used for them
+// import 'react-jplayer/src/less/controls/iconControls.less';
+import 'react-jplaylist/src/less/skins/sleek.less';
+import 'react-jplaylist/src/less/controls/iconControls.less';
+
 import { initialState} from 'react-jplayer';
+import { initialState as jPlaylistInitialState } from 'react-jplaylist';
 import AudioPlayer from './components/AudioPlayer';
+import AudioPlaylist from './components/AudioPlaylist';
 // 1. Initialize
 const app = dva({
 	initialState: {
@@ -22,7 +27,8 @@ const app = dva({
 			'userName': '',
 			'passWord': ''
 		},
-		jPlayers:{...initialState(AudioPlayer)},
+		jPlayers:{...initialState([AudioPlayer,AudioPlaylist])},
+		jPlaylists:{...jPlaylistInitialState(AudioPlaylist)}
 	},
 });
 
@@ -36,6 +42,7 @@ app.model(require("./models/auth"));
 app.model(require('./models/example'));
 app.model(require('./models/user'));
 app.model(require('./models/JPlayer'));
+app.model(require('./models/jPlaylists'));
 // 4. Router
 app.router(require('./router'));
 

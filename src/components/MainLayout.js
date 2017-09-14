@@ -68,8 +68,16 @@ class MainLayout extends React.Component {
 					    中国地图
 						</Link>
 					</Menu.Item>
-					<Menu.Item key="2">option2</Menu.Item>
-					<Menu.Item key="3">option3</Menu.Item>
+					<Menu.Item key="2">
+						<Link to="/player">
+					    播放器
+						</Link>
+					</Menu.Item>
+					<Menu.Item key="3">
+						<Link to="/playerlist">
+					    播放器列表
+						</Link>
+					</Menu.Item>
 					<Menu.Item key="4">option4</Menu.Item>
 				</SubMenu>
 				<SubMenu key="sub2" title={<span><Icon type="laptop" /><span>subnav 2</span></span>}>
